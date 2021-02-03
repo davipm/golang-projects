@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
+	//"time"
 )
 
 func helloWorld() {
@@ -75,6 +77,48 @@ func forExample() {
 	}
 }
 
+func ifElseExample() {
+	if 7%2 == 0 {
+		fmt.Println("7 is even")
+	} else {
+		fmt.Println("7 is odd")
+	}
+
+	if 8%4 == 0 {
+		fmt.Println("8 is divisible by 4")
+	}
+
+	if num := 9; num < 0 {
+		fmt.Println(num, "is negative")
+	} else if num < 10 {
+		fmt.Println(num, "has 1 digit")
+	} else {
+		fmt.Println(num, "has multiple digits")
+	}
+}
+
+func switchExample() {
+	// TODO implement this letter
+	i := 2
+	fmt.Println("Write", i, "as")
+
+	switch i {
+	case 1:
+		fmt.Println("one")
+	case 2:
+		fmt.Println("two")
+	case 3:
+		fmt.Println("three")
+	}
+
+	switch time.Now().Weekday() {
+	case time.Saturday, time.Sunday:
+		fmt.Println("It's the weekend")
+	default:
+		fmt.Println("It's weekday")
+	}
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -82,4 +126,6 @@ func main() {
 	variablesExample()
 	constantsExample()
 	forExample()
+	ifElseExample()
+	switchExample()
 }
