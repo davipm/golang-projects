@@ -141,6 +141,20 @@ func arrayExample() {
 	fmt.Println("2d", twoD)
 }
 
+func sliceExample() {
+	var s = make([]string, 3)
+	fmt.Println("emp", s)
+
+	s[0] = "a"
+	s[1] = "b"
+	s[2] = "c"
+
+	fmt.Println("set", s)
+	fmt.Println("set", s[2])
+
+	fmt.Println("len:", len(s))
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -151,4 +165,5 @@ func main() {
 	ifElseExample()
 	switchExample()
 	arrayExample()
+	sliceExample()
 }
