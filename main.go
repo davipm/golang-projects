@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+func helloTest() string {
+	return "Hello World!"
+}
+
 func helloWorld() {
 	fmt.Println("Hello World!")
 }
@@ -25,7 +29,7 @@ func variablesExample() {
 	var a = "initial"
 	fmt.Println(a)
 
-	var b, c int = 1, 2
+	var b, c = 1, 2
 	fmt.Println(b, c)
 
 	var d = true
