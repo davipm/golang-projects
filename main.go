@@ -38,7 +38,7 @@ func variablesExample() {
 	var e int
 	fmt.Println(e)
 
-	f := "apple"
+	var f = "apple"
 	fmt.Println(f)
 }
 
