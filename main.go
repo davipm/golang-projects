@@ -191,6 +191,40 @@ func sliceExample() {
 	fmt.Println("2d", twoD)
 }
 
+func distance(name1 string, name2 string) int {
+	if len(name1) != len(name2) {
+		panic("Names shoeld be same lenght")
+		return 0
+	}
+
+	var distance = 0
+
+	for i := 0; i < len(name1); i++ {
+		if name1[i] != name2[i] {
+			distance += 1
+		}
+	}
+
+	return distance
+}
+
+func factorial(number int) int {
+	var result = 1
+
+	for i := 2; i <= number; i++ {
+		result *= i
+	}
+
+	return result
+}
+
+func mapExamples() {
+	var m = make(map[string]int)
+
+	m["k7"] = 7
+	m["k2"] = 13
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -202,4 +236,6 @@ func main() {
 	switchExample()
 	arrayExample()
 	sliceExample()
+	fmt.Println(distance("david", "deved"))
+	fmt.Println("factorial result ", factorial(5))
 }
