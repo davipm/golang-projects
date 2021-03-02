@@ -292,6 +292,18 @@ func vals() (int, int) {
 	return 3, 7
 }
 
+// Variadic Functions
+func sum(nums ...int) {
+	fmt.Println(nums, " ")
+	total := 0
+
+	for _, num := range nums {
+		total += num
+	}
+
+	fmt.Println(total)
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -314,4 +326,9 @@ func main() {
 	fmt.Println(b)
 	_, c := vals()
 	fmt.Println(c)
+
+	sum(1, 2)
+	sum(1, 2, 3)
+	nums := []int{1, 2, 3, 4}
+	sum(nums...)
 }
