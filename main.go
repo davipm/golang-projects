@@ -287,6 +287,11 @@ func functionsResults() {
 	fmt.Println("1 + 2 + 3 =", res)
 }
 
+// Multiple Return Values
+func vals() (int, int) {
+	return 3, 7
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -303,4 +308,10 @@ func main() {
 	mapExamples()
 	rangeExample()
 	functionsResults()
+
+	a, b := vals()
+	fmt.Println(a)
+	fmt.Println(b)
+	_, c := vals()
+	fmt.Println(c)
 }
