@@ -304,6 +304,15 @@ func sum(nums ...int) {
 	fmt.Println(total)
 }
 
+// Closures
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -331,4 +340,12 @@ func main() {
 	sum(1, 2, 3)
 	nums := []int{1, 2, 3, 4}
 	sum(nums...)
+
+	nextInt := intSeq()
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+
+	newInt := intSeq()
+	fmt.Println(newInt())
 }
