@@ -331,6 +331,18 @@ func zeroptr(iptr *int) {
 	*iptr = 0
 }
 
+// Structs
+type person struct {
+	name string
+	age  int
+}
+
+func newPerson(name string) *person {
+	p := person{name: name}
+	p.age = 42
+	return &p
+}
+
 // main application
 func main() {
 	helloWorld()
@@ -377,4 +389,16 @@ func main() {
 	fmt.Println("zeroptr:", i)
 
 	fmt.Println("zeroptr:", &i)
+
+	fmt.Println(person{"bob", 20})
+	fmt.Println(person{name: "bob", age: 20})
+	fmt.Println(person{name: "Fred"})
+	fmt.Println(&person{name: "Fred", age: 40})
+	fmt.Println(newPerson("Jhon"))
+	s := person{name: "Sean", age: 50}
+	fmt.Println(s.name)
+	sp := &s
+	fmt.Println(sp.age)
+	sp.age = 51
+	fmt.Println(sp.age)
 }
