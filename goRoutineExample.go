@@ -11,6 +11,15 @@ func f(from string) {
 	}
 }
 
+// Channel Synchronization
+func worker(done chan bool) {
+	fmt.Println("working...")
+	time.Sleep(time.Second)
+	fmt.Println("done")
+
+	done <- true
+}
+
 func main() {
 	f("direct")
 
@@ -26,4 +35,9 @@ func main() {
 	go func() { message <- "ping" }()
 	msg := <-message
 	fmt.Println(msg)
+
+	// Channel Synchronization
+	done := make(chan bool, 1)
+	go worker(done)
+	<-done
 }
