@@ -1,14 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 )
 
+const URL = "https://jsonplaceholder.typicode.com"
+
 func getAllUsers() {
-	var url = "https://jsonplaceholder.typicode.com/users"
+	var url = URL + "/users"
 	var req, _ = http.NewRequest("GET", url, nil)
 	var res, _ = http.DefaultClient.Do(req)
 
@@ -16,11 +18,11 @@ func getAllUsers() {
 
 	var body, _ = ioutil.ReadAll(res.Body)
 
-	log.Println(string(body))
+	fmt.Println(string(body))
 }
 
 func getAllUsersWithHeader() {
-	var url = "https://jsonplaceholder.typicode.com/users"
+	var url = URL + "/users"
 	var req, _ = http.NewRequest("GET", url, nil)
 
 	req.Header.Add("cache-control", "no-cache")
@@ -31,12 +33,12 @@ func getAllUsersWithHeader() {
 
 	var body, _ = ioutil.ReadAll(res.Body)
 
-	log.Println(string(body))
+	fmt.Println(string(body))
 }
 
 func handlePostRequest() {
-	var url = "https://jsonplaceholder.typicode.com/users"
-	var payload = strings.NewReader("id=1")
+	var url = "https://reqres.in/api/users"
+	var payload = strings.NewReader("name=test&jab=teacher")
 
 	var req, _ = http.NewRequest("POST", url, payload)
 
@@ -49,7 +51,7 @@ func handlePostRequest() {
 
 	var body, _ = ioutil.ReadAll(res.Body)
 
-	log.Println(string(body))
+	fmt.Println(string(body))
 }
 
 func main() {
