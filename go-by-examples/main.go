@@ -6,10 +6,6 @@ import (
 	"time"
 )
 
-func helloTest() string {
-	return "Hello World!"
-}
-
 func helloWorld() {
 	fmt.Println("Hello World!")
 }
