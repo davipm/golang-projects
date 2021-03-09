@@ -41,19 +41,19 @@ func main() {
 	fmt.Println("done")
 
 	// Channels
-	message := make(chan string)
+	var message = make(chan string)
 	go func() { message <- "ping" }()
 	msg := <-message
 	fmt.Println(msg)
 
 	// Channel Synchronization
-	done := make(chan bool, 1)
+	var done = make(chan bool, 1)
 	go worker(done)
 	<-done
 
 	// Channel Directions
-	pings := make(chan string, 1)
-	pongs := make(chan string, 1)
+	var pings = make(chan string, 1)
+	var pongs = make(chan string, 1)
 	ping(pings, "passed message")
 	pong(pings, pongs)
 	fmt.Println(<-pongs)
