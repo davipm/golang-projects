@@ -15,5 +15,8 @@ describe('<ChatInput />', () => {
 
     fireEvent.change(inputMessage, { target: { value: '' } })
     expect(inputMessage.value).toBe("")
+
+    fireEvent.keyDown(inputMessage, { key: "Enter", code: "Enter" })
+    expect(onSend).toHaveBeenCalledTimes(1)
   });
 });
