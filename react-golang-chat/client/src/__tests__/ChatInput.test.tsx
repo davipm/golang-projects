@@ -4,7 +4,7 @@ import "@testing-library/jest-dom/extend-expect";
 import ChatInput from "../components/chat-input";
 
 describe('<ChatInput />', () => {
-  it('should test inout component', () => {
+  it('should test input component', () => {
     const onSend = jest.fn()
     const { getByPlaceholderText } = render(<ChatInput send={onSend} />)
 

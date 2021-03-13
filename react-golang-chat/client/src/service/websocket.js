@@ -18,7 +18,7 @@ let connect = (cb) => {
   };
 
   socket.onerror = (error) => {
-    console.log("soecket error: ", error);
+    console.log("socket error: ", error);
   };
 };
 
