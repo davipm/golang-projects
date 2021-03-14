@@ -1,4 +1,4 @@
-# Golang study's!
+# Golang Projects with some React.js clients!
 
 Collection of small projects, mostly using Golang and React.
 
