@@ -6,7 +6,7 @@ import ChatInput from "../components/chat-input";
 describe('<ChatInput />', () => {
   it('should test input component', () => {
     const onSend = jest.fn()
-    const { getByPlaceholderText } = render(<ChatInput send={onSend} />)
+    const { getByPlaceholderText } = render(<ChatInput onSend={onSend} />)
 
     const inputMessage: any = getByPlaceholderText("Message")
 

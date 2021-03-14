@@ -38,7 +38,7 @@ export default function App() {
     <div id="app">
       <Header />
       <ChatHistory chatHistory={chatHistory} />
-      <ChatInput send={sendMessage} />
+      <ChatInput onSend={sendMessage} />
 
       <Global />
     </div>
