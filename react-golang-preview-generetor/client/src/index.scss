@@ -32,7 +32,7 @@ body {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  height: calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
 }
 
 .content {
