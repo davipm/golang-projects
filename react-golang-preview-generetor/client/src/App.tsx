@@ -40,7 +40,6 @@ export default function App() {
       );
 
       setThumbnail(data.screenshot);
-      console.log(data);
     } catch (error) {
       setError(true);
     }
