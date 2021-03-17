@@ -6,7 +6,9 @@ interface ImagePreview {
   screenshot: string;
 }
 
-const apiUrl = "http://localhost:8080/api";
+const api = axios.create({
+  baseURL: "http://localhost:8080/api",
+});
 
 const config = {
   headers: {
@@ -15,7 +17,7 @@ const config = {
 };
 
 async function handlePost(data: string) {
-  return axios.post<ImagePreview>(`${apiUrl}/thumbnail`, { url: data }, config);
+  return api.post<ImagePreview>(`/thumbnail`, { url: data }, config);
 }
 
 export default function App() {
