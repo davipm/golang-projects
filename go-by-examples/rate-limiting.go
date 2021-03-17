@@ -38,6 +38,7 @@ func main() {
 	for i := 0; i <= 5; i++ {
 		bustyRequests <- i
 	}
+
 	close(bustyRequests)
 
 	for req := range bustyRequests {
