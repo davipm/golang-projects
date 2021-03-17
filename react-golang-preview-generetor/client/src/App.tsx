@@ -1,17 +1,32 @@
-import React, { FormEvent, useState, useRef, ChangeEvent } from "react";
+import React, { FormEvent, useState, useRef } from "react";
 import axios from "axios";
+import { useMutation } from "react-query";
 
 interface ImagePreview {
   screenshot: string;
 }
 
+const apiUrl = "http://localhost:8080/api";
+
+const config = {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+};
+
+async function handlePost(data: string) {
+  return axios.post<ImagePreview>(`${apiUrl}/thumbnail`, { url: data }, config);
+}
+
 export default function App() {
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [thumbnail, setThumbnail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const mutation = useMutation(() => handlePost(websiteUrl), {
+    onSuccess: ({ data }) => setThumbnail(data.screenshot),
+  });
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -21,34 +36,7 @@ export default function App() {
       return null;
     }
 
-    setError(false);
-    setLoading(true);
-
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    };
-
-    try {
-      const { data } = await axios.post<ImagePreview>(
-        "http://localhost:8080/api/thumbnail",
-        {
-          url: websiteUrl,
-        },
-        config
-      );
-
-      setThumbnail(data.screenshot);
-    } catch (error) {
-      setError(true);
-    }
-
-    setLoading(false);
-  }
-
-  function onChange(event: ChangeEvent<HTMLInputElement>) {
-    setWebsiteUrl(event.target.value);
+    mutation.mutate();
   }
 
   return (
@@ -62,12 +50,11 @@ export default function App() {
               <input
                 type="text"
                 aria-label="Enter a website"
-                id="website-input"
                 placeholder="Enter a website"
                 className="form-control"
                 ref={inputRef}
                 value={websiteUrl}
-                onChange={onChange}
+                onChange={(event) => setWebsiteUrl(event.target.value)}
               />
             </div>
             <div className="form-group">
@@ -77,8 +64,8 @@ export default function App() {
             </div>
           </form>
 
-          {loading && <h3>Loading...</h3>}
-          {error && <h3>Error!</h3>}
+          {mutation.isLoading && <h3>Loading...</h3>}
+          {mutation.isError && <h3>Error!</h3>}
 
           {thumbnail && (
             <img src={thumbnail} alt="Preview" className="preview" />
