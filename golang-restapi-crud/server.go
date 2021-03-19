@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type task struct {
@@ -26,7 +27,7 @@ var tasks = allTasks{
 }
 
 func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Golang Rest api")
+	_, _ = fmt.Fprintf(w, "Golang Rest api")
 }
 
 func createTask(w http.ResponseWriter, r *http.Request) {
@@ -34,21 +35,37 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
-		fmt.Fprintf(w, "Insert a valid task data")
+		_, _ = fmt.Fprintf(w, "Insert a valid task data")
 	}
 
-	json.Unmarshal(reqBody, &newTask)
+	_ = json.Unmarshal(reqBody, &newTask)
 	newTask.ID = len(tasks) + 1
 	tasks = append(tasks, newTask)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(newTask)
+	_ = json.NewEncoder(w).Encode(newTask)
 }
 
 func getTasks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(tasks)
+	_ = json.NewEncoder(w).Encode(tasks)
+}
+
+func getOneTasks(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	taskID, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		return
+	}
+
+	for _, task := range tasks {
+		if task.ID == taskID {
+			w.Header().Set("Content-Type", "application/json")
+			_ = json.NewEncoder(w).Encode(task)
+		}
+	}
 }
 
 func main() {
@@ -57,5 +74,7 @@ func main() {
 	router.HandleFunc("/", indexRoute)
 	router.HandleFunc("/tasks", createTask).Methods("POST")
 	router.HandleFunc("/tasks", getTasks).Methods("GET")
+	router.HandleFunc("/tasks/{id}", getOneTasks).Methods("GET")
+
 	log.Fatal(http.ListenAndServe(":3000", router))
 }
