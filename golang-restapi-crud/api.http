@@ -1,0 +1,31 @@
+### Send POST request with json body
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "ID": 1,
+  "Name": "Name",
+  "Content": "Content"
+}
+
+### GET request with a header
+GET http://localhost:3000/tasks
+Accept: application/json
+
+### GET request with a header
+GET http://localhost:3000/tasks/1
+Accept: application/json
+
+### GET request with a header
+DELETE http://localhost:3000/tasks/1
+Accept: application/json
+
+### Send POST request with json body
+PUT http://localhost:3000/tasks/2
+Content-Type: application/json
+
+{
+  "ID": 2,
+  "Name": "Name",
+  "Content": "Content"
+}
