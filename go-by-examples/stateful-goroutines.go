@@ -18,7 +18,6 @@ type writeOp struct {
 	resp chan bool
 }
 
-// TODO: finish this function!
 func main() {
 	var readOps uint64
 	var writeOps uint64
