@@ -46,10 +46,16 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(newTask)
 }
 
+func getTasks(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(tasks)
+}
+
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/", indexRoute)
 	router.HandleFunc("/tasks", createTask).Methods("POST")
+	router.HandleFunc("/tasks", getTasks).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", router))
 }
