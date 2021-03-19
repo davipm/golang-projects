@@ -3,9 +3,9 @@ POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-  "ID": 1,
-  "Name": "Name",
-  "Content": "Content"
+  "id": 1,
+  "name": "Name",
+  "content": "Content"
 }
 
 ### GET all taks
@@ -25,7 +25,7 @@ PUT http://localhost:3000/tasks/2
 Content-Type: application/json
 
 {
-  "ID": 2,
-  "Name": "Name",
-  "Content": "Content"
+  "id": 2,
+  "name": "Name",
+  "content": "Content"
 }
