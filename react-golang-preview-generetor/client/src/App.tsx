@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useRef } from "react";
-import axios from "axios";
 import { useMutation } from "react-query";
+import axios from "axios";
 
 interface ImagePreview {
   screenshot: string;
