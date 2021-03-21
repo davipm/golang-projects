@@ -19,7 +19,7 @@ some projects has testing for client and server
 
 * Golang
 * React
-* SCSS/Styled components
+* SCSS / Styled components
 
 ## Authors
 
