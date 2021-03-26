@@ -13,6 +13,7 @@ export const Container = styled.div`
     font-size: 1.2rem;
     font-weight: 300;
     line-height: 1.5;
+    text-align: left;
     color: black;
     background-color: #FFF;
     background-clip: padding-box;
