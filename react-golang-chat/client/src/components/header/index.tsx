@@ -1,9 +1,12 @@
+import { memo } from "react";
 import { Container } from "./style";
 
-export default function Header() {
+function Header() {
   return (
     <Container>
       <h2>Realtime Chat App</h2>
     </Container>
   );
 }
+
+export default memo(Header);

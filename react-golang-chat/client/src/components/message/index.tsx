@@ -1,6 +1,9 @@
+import { memo } from "react";
 import { Container } from "./style";
 import { PropsMessage } from "../../@types/message";
 
-export default function Message({ message }: PropsMessage) {
+function Message({ message }: PropsMessage) {
   return <Container>{message.body}</Container>;
 }
+
+export default memo(Message);
