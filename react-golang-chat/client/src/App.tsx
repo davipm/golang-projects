@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  KeyboardEvent,
+  ChangeEvent,
+} from "react";
 
 import Header from "./components/header";
 import ChatHistory from "./components/chat-history";
@@ -7,6 +13,10 @@ import { connect, sendMsg } from "./service/websocket";
 
 import Global from "./styles/global";
 import { HistoryType } from "./@types/chat-history";
+
+type SendMessageType =
+  | KeyboardEvent<HTMLInputElement>
+  | ChangeEvent<HTMLInputElement>;
 
 export default function App() {
   const [chatHistory, setChatHistory] = useState<HistoryType[]>([]);
@@ -17,22 +27,15 @@ export default function App() {
     });
   }, [chatHistory]);
 
-  const sendMessage = useCallback(
-    (
-      event:
-        | React.KeyboardEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLInputElement>
-    ) => {
-      const { key } = event as React.KeyboardEvent<HTMLInputElement>;
-      const { target } = event as React.ChangeEvent<HTMLInputElement>;
+  const sendMessage = useCallback((event: SendMessageType) => {
+    const { key } = event as KeyboardEvent<HTMLInputElement>;
+    const { target } = event as ChangeEvent<HTMLInputElement>;
 
-      if (key === "Enter") {
-        sendMsg(target?.value);
-        target.value = "";
-      }
-    },
-    []
-  );
+    if (key === "Enter") {
+      sendMsg(target?.value);
+      target.value = "";
+    }
+  }, []);
 
   return (
     <div id="app">
