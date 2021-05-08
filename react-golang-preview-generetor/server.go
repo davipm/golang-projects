@@ -53,7 +53,7 @@ func thumbnailHandler(w http.ResponseWriter, r *http.Request) {
 	jsonString, err := json.Marshal(apiRequest)
 	checkError(err)
 
-	req, err := http.NewRequest("POST", "https://screenshotapi.net/api/v1/screenshot", bytes.NewBuffer(jsonString))
+	req, err := http.NewRequest("POST", "https://shot.screenshotapi.net/screenshot", bytes.NewBuffer(jsonString))
 	checkError(err)
 
 	req.Header.Set("Content-Type", "application/json")
@@ -73,6 +73,7 @@ func thumbnailHandler(w http.ResponseWriter, r *http.Request) {
 	checkError(err)
 
 	_, err = fmt.Fprintf(w, `{ "screenshot": "%s" }`, apiResponse.Screenshot)
+	fmt.Println(apiResponse.Screenshot)
 	checkError(err)
 }
 

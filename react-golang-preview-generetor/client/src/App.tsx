@@ -16,8 +16,8 @@ const config = {
   },
 };
 
-async function handlePost(data: string) {
-  return api.post<ImagePreview>(`/thumbnail`, { url: data }, config);
+async function handlePost(url: string) {
+  return api.post<ImagePreview>(`/thumbnail`, { url }, config);
 }
 
 export default function App() {
@@ -26,9 +26,7 @@ export default function App() {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const mutation = useMutation(() => handlePost(websiteUrl), {
-    onSuccess: ({ data }) => setThumbnail(data.screenshot),
-  });
+  const mutation = useMutation(handlePost);
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -38,7 +36,9 @@ export default function App() {
       return null;
     }
 
-    mutation.mutate();
+    mutation.mutate(websiteUrl, {
+      onSuccess: ({data}) => setThumbnail(data.screenshot)
+    });
   }
 
   return (
