@@ -4,12 +4,13 @@ import { Container } from "./styles";
 import { PropsHistory } from "../../@types/chat-history";
 
 export default function ChatHistory({ chatHistory }: PropsHistory) {
+  const parseHistory = chatHistory.map((msg) => JSON.parse(msg.data));
+
   return (
     <Container>
       <h2>Chat History</h2>
-      {chatHistory.map((msg, index) => {
-        const parseMessage = JSON.parse(msg.data);
-        return <Message message={parseMessage} key={index} />;
+      {parseHistory.map((msg, index) => {
+        return <Message message={msg} key={index} />;
       })}
     </Container>
   );
