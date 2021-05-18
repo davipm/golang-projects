@@ -8,16 +8,13 @@ interface ImagePreview {
 
 const api = axios.create({
   baseURL: "http://localhost:8080/api",
-});
-
-const config = {
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
   },
-};
+});
 
 async function handlePost(url: string) {
-  return api.post<ImagePreview>(`/thumbnail`, { url }, config);
+  return api.post<ImagePreview>(`/thumbnail`, { url });
 }
 
 export default function App() {
