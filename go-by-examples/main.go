@@ -38,10 +38,10 @@ func variablesExample() {
 	fmt.Println(f)
 }
 
-const s string = "constant"
+//const s string = "constant"
 
 func constantsExample() {
-	fmt.Println(s)
+	//fmt.Println(s)
 
 	const n = 500000000
 	const d = 3e20 / n
