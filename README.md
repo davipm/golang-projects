@@ -2,7 +2,7 @@
 
 Collection of small projects, mostly using Golang and React.
 
-## Getting Started
+## Getting Started:
 
 Each folder is an independent project, enter and install the dependencies and run the project
 
