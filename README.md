@@ -10,7 +10,7 @@ Each folder is an independent project, enter and install the dependencies and ru
 
 Mostly all projects need node and Go instaled.
 
-## Running the tests
+## Running the tests:
 
 some projects has testing for client and server
 
