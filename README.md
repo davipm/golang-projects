@@ -12,7 +12,7 @@ Mostly all projects need node and Go instaled.
 
 ## Running the tests:
 
-some projects has testing for client and server
+some projects has testing for client and server.
 
 
 ## Built With
